@@ -11,12 +11,16 @@ typedef struct TAG_VERTEX{
 }VERTEX;
 
 typedef struct TAG_NODE{
-    int index; //This will be the number corresponding to the vertex, it will hold the adjancey list of that node 
-    int startVertex; 
+    int index; //This will be the index of the edge in the file
+    int startVertex;  //This will be where the edge starts at 
     int endVertex;    // In an undirected graph, the order of startVertex and endVertex will not matter. 
     double weight; //Weight of the edge
     TAG_NODE *next;
-    /* This is a linked list which will hold  
+    /* This is a linked list which will hold all the next nodes of a vertex, based off of startVertex
+
+        If the flag is 1, insert at the beginning of the linked list
+        If the flag is 2, insert at the end of the linked list
+
     */
 }NODE;
 
