@@ -4,18 +4,20 @@
 enum COLOR {White, Gray, Black};
 typedef struct TAG_VERTEX{
     int adjanceyIndex;
-    COLOR color;
-    double key;  
     int pi;
     int heapPosition;
+    COLOR color;
+    double key;  //Will be intialized to a really high number, change as you find the least weight to traverse thru the node
 }VERTEX;
 
 typedef struct TAG_NODE{
-    int index;
-    int u; 
-    int v;    //
-    double w; //Weight of the edige
+    int index; //This will be the number corresponding to the vertex, it will hold the adjancey list of that node 
+    int startVertex; 
+    int endVertex;    // In an undirected graph, the order of startVertex and endVertex will not matter. 
+    double weight; //Weight of the edge
     TAG_NODE *next;
+    /* This is a linked list which will hold  
+    */
 }NODE;
 
 
