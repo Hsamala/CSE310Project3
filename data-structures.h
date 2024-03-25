@@ -6,11 +6,10 @@ enum COLOR {White, Black, Gray};
 typedef struct TAG_VERTEX{
     int index;
     COLOR color;
-    double key;
+    double key; //Must update everytime we relax the graph
     int pi;
     int position;
 } VERTEX;
 
-//This is a test of github
 
 #endif
