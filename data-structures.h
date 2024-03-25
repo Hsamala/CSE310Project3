@@ -12,9 +12,9 @@ typedef struct TAG_VERTEX{
 
 typedef struct TAG_NODE{
     int index;
-    int u;
-    int v;
-    double w;
+    int u; 
+    int v;    //
+    double w; //Weight of the edige
     TAG_NODE *next;
 }NODE;
 
