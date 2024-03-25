@@ -27,7 +27,7 @@ typedef struct TAG_ELEMENT {
 typedef struct TAG_HEAP {
     int capacity; /* capacity of the heap */
     int size; /* current size of the heap */
-    ELEMENT** A; /* array of pointers to ELEMENT */
+    ELEMENT* p_A; /* array of pointers to ELEMENT */
     // other fields as you see fit
 }HEAP;
 
