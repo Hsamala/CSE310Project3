@@ -10,4 +10,12 @@ typedef struct TAG_VERTEX{
     int position;
 }VERTEX;
 
+typedef struct TAG_NODE{
+    int index;
+    int u;
+    int v;
+    double w;
+    TAG_NODE *next;
+}NODE;
+
 #endif
