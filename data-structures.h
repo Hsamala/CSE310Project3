@@ -3,7 +3,7 @@
 
 enum COLOR {White, Gray, Black};
 typedef struct TAG_VERTEX{
-    int adjanceyIndex;
+    int adjanceyIndex; 
     int pi;
     int heapPosition;
     COLOR color;
