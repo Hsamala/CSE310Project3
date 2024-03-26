@@ -2,7 +2,7 @@
 #define _graph.h 1
 #include "data-structures.h"
 
-void singlePair();
+void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, int destination);
 void singleSource();
 
 #endif
