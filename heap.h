@@ -6,3 +6,5 @@ void heapify();
 void buildHeap();
 void Insert();
 void DecreaseKey();
+
+#endif
