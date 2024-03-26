@@ -2,9 +2,9 @@
 #define _util.h 1
 #include "data-structures.h"
 
-void intializeGraph();
-void readGraph();
-void printAdjanceyList();
-void getNextInstruction();
+VERTEX** buildVertexList(int numOfVertex);
+NODE**  buildAdjanceyList(int numeOfEdges);
+void printAdjanceyList(NODE** adjanceyList);
+int getNextInstruction(char* Word, int* parameter1, int* parameter2);
 
 #endif

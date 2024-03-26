@@ -3,6 +3,6 @@
 #include "data-structures.h"
 
 void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, int destination);
-void singleSource();
+void computesingleSource(VERTEX** vertexList, NODE** adjacencyList, int source);
 
 #endif
