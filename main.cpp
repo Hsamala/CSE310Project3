@@ -1,6 +1,6 @@
 #include "util.h"
 #include "main.h"
-#include "data-structures.h"
+#include "data_structures.h"
 
 int main(int argc, char **argv) {
 
