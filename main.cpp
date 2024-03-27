@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     NODE** p_adjacencyList;
 
     if(argc < 4) {
-        fprintf(stderr, "Usage %s <ifile> <ofile> flag\n", argv[0]);
+        fprintf(stderr, "Usage %s <InputFile> <GraphType> flag\n", argv[0]);
         exit(0);
     }
 
@@ -26,10 +26,14 @@ int main(int argc, char **argv) {
         int commandType = getNextInstruction(instructions, &parameter1, &parameter2);
 
          switch(commandType) {
+
+            case 0:
+                fprintf(stderr, "Invalid Instruction");
+                break;
             case 1:
                 printAdjanceyList(p_adjacencyList);
                 break;
-           
+
          }       
             
     }
