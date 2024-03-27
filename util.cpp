@@ -3,8 +3,15 @@
 
 VERTEX** buildVertexList(FILE* p_currentFile, VERTEX** p_vertexList, int numOfVertex) {
     
+    fprintf(stdout, "Building Vertex List Command");
+
 }
 
+NODE**  buildAdjanceyList(FILE* p_currentFile, NODE** p_adjacencyList , int numeOfEdges) {
+
+    fprintf(stdout, "Build Adjancey List Command");
+
+}
 
 int getNextInstruction(char* Word, int* passed1, int* passed2) {
 

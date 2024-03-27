@@ -5,7 +5,7 @@ CFLAGS = -c -Wall
 $(EXEC)	:main.o util.o stack.o heap.o graph.o
 	$(CC) -o $(EXEC) main.o util.o heap.o graph.o stack.o
 	
-main.o	:main.cpp main.h data_structures.h util.h stack.h heap.h graph.h
+main.o	:main.cpp data_structures.h util.h stack.h heap.h graph.h
 	$(CC) $(CFLAGS) main.cpp	
 	
 util.o	:util.cpp util.h data_structures.h
