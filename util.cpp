@@ -1,5 +1,11 @@
 #include "util.h"
 
+
+VERTEX** buildVertexList(FILE* p_currentFile, VERTEX** p_vertexList, int numOfVertex) {
+    
+}
+
+
 int getNextInstruction(char* Word, int* passed1, int* passed2) {
 
     int commandSuccess = fscanf(stdin, "%s", Word);
