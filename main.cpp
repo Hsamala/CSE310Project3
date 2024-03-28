@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv) {
 
-    FILE* p_currentFile;
+    FILE* p_currentFile = NULL;
     int commandType, parameter1, parameter2, numOfVertex, sizeOfAdjList;
     char instructions[100];
     VERTEX** p_vertexList;
@@ -24,13 +24,9 @@ int main(int argc, char **argv) {
         exit(0);
     }
 
-    if(fscanf(p_currentFile, "%u", numOfVertex) == 0) {
+    if(fscanf(p_currentFile, "%d %d", &numOfVertex, &sizeOfAdjList) == 0) {
         fprintf(stderr, "Error: Could not find Vertex Size\n");
     }
-
-   if(fscanf(p_currentFile, "%u", sizeOfAdjList) == 0) {
-        fprintf(stderr, "Error: Could not find Vertex Size\n");
-    } 
 
     buildVertexList(p_currentFile, p_vertexList, numOfVertex);
 
