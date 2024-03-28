@@ -3,7 +3,7 @@
 
 VERTEX** buildVertexList(FILE* p_currentFile, VERTEX** p_vertexList, int numOfVertex) {
     
-    fprintf(stdout, "Building Vertex List Command");
+    int vertexLength; 
 
 }
 

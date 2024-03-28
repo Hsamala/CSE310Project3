@@ -24,6 +24,16 @@ int main(int argc, char **argv) {
         exit(0);
     }
 
+    if(fscanf(p_currentFile, "%u", numOfVertex) == 0) {
+        fprintf(stderr, "Error: Could not find Vertex Size\n");
+    }
+
+   if(fscanf(p_currentFile, "%u", sizeOfAdjList) == 0) {
+        fprintf(stderr, "Error: Could not find Vertex Size\n");
+    } 
+
+    buildVertexList(p_currentFile, p_vertexList, numOfVertex);
+
     while(1) {
 
         int commandType = getNextInstruction(instructions, &parameter1, &parameter2);
