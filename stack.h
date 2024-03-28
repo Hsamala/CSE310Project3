@@ -2,7 +2,7 @@
 #define _stack.h 1
 #include "data_structures.h"
 
-void printLenght();
+void printLength();
 void printPath();
 
 #endif

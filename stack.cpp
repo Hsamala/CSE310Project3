@@ -6,7 +6,7 @@ void printLength() {
 
 }
 
-void PrintPath() {
+void printPath() {
 
     fscanf(stdout, "This is the print path command\n");
 
