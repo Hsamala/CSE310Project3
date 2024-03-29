@@ -1,13 +1,13 @@
 #include "util.h"
 
 
-VERTEX** buildVertexList(FILE* p_currentFile, VERTEX** p_vertexList, int numOfVertex) {
+VERTEX** buildVertexList(istream& inputFile, VERTEX** p_vertexList, int numOfVertex) {
     
     int vertexLength; 
 
 }
 
-NODE**  buildAdjanceyList(FILE* p_currentFile, NODE** p_adjacencyList , int numeOfEdges) {
+NODE**  buildAdjanceyList(istream& inputFile, NODE** p_adjacencyList , int numeOfEdges) {
 
     fprintf(stdout, "Build Adjancey List Command\n");
 
@@ -21,41 +21,40 @@ void printAdjanceyList(NODE** adjanceyList) {
 
 int getNextInstruction(char* Word, int* passed1, int* passed2) {
 
-    int commandSuccess = fscanf(stdin, "%s", Word);
+    cin >> Word;
 
-    if(commandSuccess == 0) {
-        return 0;
-    } else {
+    *passed1;
+    *passed2;
 
-        if(strcmp(Word, "PrintADJ") == 0) {
-            return 1;
-        } else if(strcmp(Word, "SinglePair") == 0) {
-            commandSuccess = fscanf(stdin, "%lf", passed1); 
-            commandSuccess = fscanf(stdin, "%lf", passed2);
-            if(commandSuccess == 1) {
+    if(strcmp(Word, "PrintADJ") == 0) {
+        return 1;
+    } else if(strcmp(Word, "SinglePair") == 0) {
+            cin >> *passed1;
+            cin >> *passed2;
+            if(*passed1 != 0 && *passed2 != 0) {
                 return 2;
             } else {
                 return 0;
             }
         } else if(strcmp(Word, "SingleSource") == 0) {
-            commandSuccess = fscanf(stdin, "%lf", passed1);
-            if(commandSuccess == 1) {
+            cin >> *passed1;
+            if(*passed1 != 0) {
                 return 3;
             } else {
                 return 0;
             }
         } else if(strcmp(Word, "PrintLength") == 0) {
-           commandSuccess = fscanf(stdin, "%lf", passed1); 
-           commandSuccess = fscanf(stdin, "%lf", passed2);
-            if(commandSuccess == 1) {
+            cin >> *passed1;
+            cin >> *passed2;
+            if(*passed1 != 0 && *passed2 != 0) {
                 return 4;
             } else {
                 return 0;
             } 
         } else if(strcmp(Word, "PrintPath") == 0) {
-            commandSuccess = fscanf(stdin, "%lf", passed1); 
-            commandSuccess = fscanf(stdin, "%lf", passed2);
-            if(commandSuccess == 1) {
+            cin >> *passed1;
+            cin >> *passed2;
+            if(*passed1 != 0 && *passed2 != 0) {
                 return 5;
             } else {
                 return 0;
@@ -63,8 +62,5 @@ int getNextInstruction(char* Word, int* passed1, int* passed2) {
         } else {
             return 0;
         }
-
-
-    }
 
 }

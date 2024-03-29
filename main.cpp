@@ -6,8 +6,8 @@
 
 int main(int argc, char **argv) {
 
-    FILE* p_currentFile = NULL;
-    int commandType, parameter1, parameter2, numOfVertex, sizeOfAdjList;
+    ifstream myCurrentFile;
+    int commandType = 0, parameter1 = 0, parameter2 = 0, numOfVertex = 0, sizeOfAdjList = 0;
     char instructions[100];
     VERTEX** p_vertexList;
     NODE** p_adjacencyList;
@@ -17,18 +17,17 @@ int main(int argc, char **argv) {
         exit(0);
     }
 
-    p_currentFile = fopen(argv[1], "r");
+    myCurrentFile.open(argv[1]);
 
-    if(p_currentFile == NULL) {
-        fprintf(stderr, "Error: cannot open file %s\n", argv[1]);
+    if(myCurrentFile.is_open() == false) {
+        cerr << "Error: cannot open file " << argv[1] << endl;
         exit(0);
     }
 
-    if(fscanf(p_currentFile, "%d %d", &numOfVertex, &sizeOfAdjList) == 0) {
-        fprintf(stderr, "Error: Could not find Vertex Size\n");
-    }
+    myCurrentFile >> numOfVertex;
+    myCurrentFile >> sizeOfAdjList;
 
-    buildVertexList(p_currentFile, p_vertexList, numOfVertex);
+    buildVertexList(myCurrentFile, p_vertexList, numOfVertex);
 
     while(1) {
 

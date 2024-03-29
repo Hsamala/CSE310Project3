@@ -1,8 +1,10 @@
 #ifndef _data_structures_h
 #define _data_structures_h 1
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
 
 enum COLOR {White, Gray, Black};
 typedef struct TAG_VERTEX{
