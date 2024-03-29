@@ -23,8 +23,8 @@ int getNextInstruction(char* Word, int* passed1, int* passed2) {
 
     cin >> Word;
 
-    *passed1;
-    *passed2;
+    *passed1 = 0;
+    *passed2= 0;
 
     if(strcmp(Word, "PrintADJ") == 0) {
         return 1;
@@ -38,7 +38,7 @@ int getNextInstruction(char* Word, int* passed1, int* passed2) {
             }
         } else if(strcmp(Word, "SingleSource") == 0) {
             cin >> *passed1;
-            if(*passed1 != 0) {
+            if(*passed1 != 0 && *passed2 == 0) {
                 return 3;
             } else {
                 return 0;
