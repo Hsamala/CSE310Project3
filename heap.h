@@ -1,5 +1,5 @@
-#ifndef _heap.h
-#define _heap.h 1
+#ifndef heap_h
+#define heap_h 1
 #include "data_structures.h"
 
 void heapify();

@@ -1,8 +1,4 @@
 #include "util.h"
-#include "stack.h"
-#include "heap.h"
-#include "graph.h"
-#include "data_structures.h"
 
 int main(int argc, char **argv) {
 
@@ -27,7 +23,7 @@ int main(int argc, char **argv) {
     myCurrentFile >> numOfVertex;
     myCurrentFile >> sizeOfAdjList;
 
-    buildVertexList(myCurrentFile, p_vertexList, numOfVertex);
+    p_vertexList = buildVertexList(myCurrentFile, numOfVertex);
 
     while(1) {
 

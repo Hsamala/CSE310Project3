@@ -1,5 +1,5 @@
-#ifndef _graph.h
-#define _graph.h 1
+#ifndef graph_h
+#define graph_h 1
 #include "data_structures.h"
 
 void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, int destination);

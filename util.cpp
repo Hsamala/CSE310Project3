@@ -1,9 +1,32 @@
 #include "util.h"
 
 
-VERTEX** buildVertexList(istream& inputFile, VERTEX** p_vertexList, int numOfVertex) {
+
+VERTEX** buildVertexList(ifstream& inputFile, int numOfVertex) {
     
-    int vertexLength; 
+    int adjIndex = 0;
+    VERTEX**  p_newVertexList = new VERTEX*[numOfVertex];
+
+    VERTEX* p_newVertex; 
+
+    if(inputFile.is_open() == false) {
+        cerr << "Error: cannot open file " << endl;
+        exit(0);
+    }
+
+    for(int i = 0; i < numOfVertex; i++) {
+        p_newVertex = (VERTEX *)calloc(1, sizeof(VERTEX));
+        p_newVertex->adjanceyIndex = i + 1;
+        p_newVertex->color = White;
+        p_newVertex->heapPosition = 0;
+        p_newVertex->key = 9999999;
+        p_newVertex->pi = NULL;
+
+        p_newVertexList[i] = p_newVertex;
+    }
+
+    return p_newVertexList;
+
 
 }
 
