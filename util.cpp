@@ -1,9 +1,6 @@
 #include "util.h"
 
-
-
-VERTEX** buildVertexList(ifstream& inputFile, int numOfVertex) {
-    
+VERTEX** buildVertexList(ifstream& inputFile, int numOfVertex)  {
     int adjIndex = 0;
     VERTEX**  p_newVertexList = new VERTEX*[numOfVertex];
 
@@ -82,6 +79,8 @@ int getNextInstruction(char* Word, int* passed1, int* passed2) {
             } else {
                 return 0;
             }
+        } else if(strcmp(Word, "Stop") == 0) {
+            return 6;
         } else {
             return 0;
         }

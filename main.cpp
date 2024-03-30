@@ -49,6 +49,10 @@ int main(int argc, char **argv) {
             case 5:
                 printPath();
                 break;
+            case 6:
+                exit(0);
+                break;
+
          }       
             
     }

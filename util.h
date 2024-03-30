@@ -5,7 +5,7 @@
 #include "heap.h"
 #include "graph.h"
 
-VERTEX** buildVertexList(istream& inputFile, int numOfVertex);
+VERTEX** buildVertexList(ifstream& inputFile, int numOfVertex);
 NODE**  buildAdjanceyList(istream& inputFile, NODE** p_adjacencyList , int numeOfEdges);
 void printAdjanceyList(NODE** adjanceyList);
 int getNextInstruction(char* Word, int* parameter1, int* parameter2);
