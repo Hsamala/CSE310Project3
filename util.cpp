@@ -1,23 +1,17 @@
 #include "util.h"
 
-VERTEX** buildVertexList(ifstream& inputFile, int numOfVertex)  {
-    int adjIndex = 0;
+VERTEX** buildVertexList(int numOfVertex)  {
     VERTEX**  p_newVertexList = new VERTEX*[numOfVertex];
 
     VERTEX* p_newVertex; 
 
-    if(inputFile.is_open() == false) {
-        cerr << "Error: cannot open file " << endl;
-        exit(0);
-    }
-
     for(int i = 0; i < numOfVertex; i++) {
-        p_newVertex = (VERTEX *)calloc(1, sizeof(VERTEX));
+        p_newVertex = new VERTEX;
         p_newVertex->adjanceyIndex = i + 1;
         p_newVertex->color = White;
         p_newVertex->heapPosition = 0;
         p_newVertex->key = 9999999;
-        p_newVertex->pi = NULL;
+        p_newVertex->pi = 0;
 
         p_newVertexList[i] = p_newVertex;
     }
@@ -27,15 +21,117 @@ VERTEX** buildVertexList(ifstream& inputFile, int numOfVertex)  {
 
 }
 
-NODE**  buildAdjanceyList(istream& inputFile, NODE** p_adjacencyList , int numeOfEdges) {
+NODE**  buildAdjanceyList(istream& inputFile, int numeOfEdges, bool DirectedUndirected, int flag) {
 
-    fprintf(stdout, "Build Adjancey List Command\n");
+    int edgeNodeIndex, start, end, weight;
+    NODE** p_newADJList = new NODE*[numeOfEdges];
+    NODE* p_newNode;
+
+    for(int i = 0; i < numeOfEdges; i++) {
+        p_newADJList[i] = NULL;
+    }
+
+    for(int i = 0; i < numeOfEdges; i++) {
+        inputFile >> edgeNodeIndex;
+        inputFile >> start;
+        inputFile >> end;
+        inputFile >> weight;
+
+        p_newNode = new NODE;
+
+        p_newNode->index = edgeNodeIndex;
+        p_newNode->startVertex = start;
+        p_newNode->endVertex = end;
+        p_newNode->weight = weight;
+
+       if (DirectedUndirected == true && flag == 1) {
+
+            if(p_newADJList[start - 1] == NULL) {
+                p_newADJList[start - 1] = p_newNode;
+            } else {
+                p_newNode->next = p_newADJList[start - 1]->next;
+                p_newADJList[start - 1]->next = p_newNode; 
+            } 
+
+
+       } else if (DirectedUndirected == true && flag == 2) {
+
+            if(p_newADJList[start - 1] == NULL) {
+                p_newADJList[start - 1] = p_newNode;
+            } else {
+                
+                NODE* p_traverse = p_newADJList[start]->next;
+
+                if(p_traverse == NULL) {
+                    p_newADJList[start - 1]->next = p_traverse;
+                } else {
+                   while(p_traverse->next != NULL) {
+                        p_traverse = p_traverse->next;
+                    } 
+                    p_traverse->next = p_newNode;
+                }
+
+            } 
+
+       } else if(DirectedUndirected == false && flag == 1) {
+
+            if(p_newADJList[start - 1] == NULL) {
+                p_newADJList[start - 1] = p_newNode;
+            } else {
+                p_newNode->next = p_newADJList[start - 1]->next;
+                p_newADJList[start - 1]->next = p_newNode; 
+            } 
+
+       } else {
+
+           NODE* p_traverse = p_newADJList[start]->next;
+
+                if(p_traverse == NULL) {
+                    p_newADJList[start - 1]->next = p_traverse;
+                } else {
+                   while(p_traverse->next != NULL) {
+                        p_traverse = p_traverse->next;
+                    } 
+                    p_traverse->next = p_newNode;
+                } 
+
+       }
+
+
+    } 
+
+    return p_newADJList;
 
 }
 
-void printAdjanceyList(NODE** adjanceyList) {
+void printAdjanceyList(NODE** adjanceyList, int numeOfEdges) {
 
-    fprintf(stdout, "print Adjancey List Command\n");
+    for(int i = 0; i < numeOfEdges; i++) {
+        cout << "ADJ[" << i + 1 << "]" << ":-->";
+
+       NODE* p_traverse = adjanceyList[i];
+
+        cout << "[" << p_traverse->startVertex << " " << p_traverse->endVertex << ": " << p_traverse->weight << "]";
+
+        if(p_traverse->next == NULL) {
+            cout << endl;
+        } else {
+
+            cout << "-->";
+
+            p_traverse = p_traverse->next;
+
+            while(p_traverse->next != NULL) {
+                cout << "[" << p_traverse->startVertex << " " << p_traverse->endVertex << ": " << p_traverse->weight << "]" << "-->";
+                p_traverse = p_traverse->next;
+            }
+
+            cout << "[" << p_traverse->startVertex << " " << p_traverse->endVertex << ": " << p_traverse->weight << "]" << endl;    
+        
+        }
+
+
+    }
 
 }
 

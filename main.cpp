@@ -3,7 +3,8 @@
 int main(int argc, char **argv) {
 
     ifstream myCurrentFile;
-    int commandType = 0, parameter1 = 0, parameter2 = 0, numOfVertex = 0, sizeOfAdjList = 0;
+    int commandType = 0, parameter1 = 0, parameter2 = 0, numOfVertex = 0, sizeOfAdjList = 0, flag = 0;
+    bool directGraph = false;
     char instructions[100];
     VERTEX** p_vertexList;
     NODE** p_adjacencyList;
@@ -22,8 +23,13 @@ int main(int argc, char **argv) {
 
     myCurrentFile >> numOfVertex;
     myCurrentFile >> sizeOfAdjList;
+    flag = *argv[3] - '0';
+    if(strcmp(argv[2], "DirectedGraph")) {
+        directGraph = true;
+    }
 
-    p_vertexList = buildVertexList(myCurrentFile, numOfVertex);
+    p_vertexList = buildVertexList(numOfVertex);
+    p_adjacencyList = buildAdjanceyList(myCurrentFile, sizeOfAdjList, directGraph, flag);
 
     while(1) {
 
@@ -35,7 +41,7 @@ int main(int argc, char **argv) {
                 fprintf(stderr, "Invalid Instruction\n");
                 break;
             case 1:
-                printAdjanceyList(p_adjacencyList);
+                printAdjanceyList(p_adjacencyList, sizeOfAdjList);
                 break;
             case 2:
                 computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2);
