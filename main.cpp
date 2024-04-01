@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
 
     while(1) {
 
-        int commandType = getNextInstruction(instructions, &parameter1, &parameter2);
+        commandType = getNextInstruction(instructions, &parameter1, &parameter2);
 
          switch(commandType) {
 
