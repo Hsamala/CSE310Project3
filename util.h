@@ -7,6 +7,7 @@
 
 VERTEX** buildVertexList(int numOfVertex);
 NODE**  buildAdjanceyList(istream& inputFile, int numOfVertex, int numeOfEdges, bool DirectedUndirected, int flag);
+void buildBackTrackNode(NODE** p_ADJList, NODE* p_addNode, int flag);
 void printAdjanceyList(NODE** adjanceyList, int numeOfEdges);
 int getNextInstruction(char* Word, int* parameter1, int* parameter2);
 
