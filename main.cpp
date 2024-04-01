@@ -2,6 +2,9 @@
 
 int main(int argc, char **argv) {
 
+    cout << fixed;
+    cout << setprecision(2);
+
     ifstream myCurrentFile;
     int commandType = 0, parameter1 = 0, parameter2 = 0, numOfVertex = 0, sizeOfAdjList = 0, flag = 0;
     bool directGraph = false;
@@ -24,12 +27,12 @@ int main(int argc, char **argv) {
     myCurrentFile >> numOfVertex;
     myCurrentFile >> sizeOfAdjList;
     flag = *argv[3] - '0';
-    if(strcmp(argv[2], "DirectedGraph")) {
+    if(strcmp(argv[2], "DirectedGraph") == 0) {
         directGraph = true;
     }
 
     p_vertexList = buildVertexList(numOfVertex);
-    p_adjacencyList = buildAdjanceyList(myCurrentFile, sizeOfAdjList, directGraph, flag);
+    p_adjacencyList = buildAdjanceyList(myCurrentFile, numOfVertex, sizeOfAdjList, directGraph, flag);
 
     while(1) {
 
@@ -38,10 +41,10 @@ int main(int argc, char **argv) {
          switch(commandType) {
 
             case 0:
-                fprintf(stderr, "Invalid Instruction\n");
+                cerr << "Invalid Instruction" << endl;
                 break;
             case 1:
-                printAdjanceyList(p_adjacencyList, sizeOfAdjList);
+                printAdjanceyList(p_adjacencyList, numOfVertex);
                 break;
             case 2:
                 computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2);

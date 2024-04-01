@@ -2,7 +2,7 @@
 #define data_structures_h 1
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string.h>
 
 using namespace std;
 

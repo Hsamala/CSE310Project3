@@ -21,13 +21,14 @@ VERTEX** buildVertexList(int numOfVertex)  {
 
 }
 
-NODE**  buildAdjanceyList(istream& inputFile, int numeOfEdges, bool DirectedUndirected, int flag) {
+NODE**  buildAdjanceyList(istream& inputFile, int numOfVertex, int numeOfEdges, bool DirectedUndirected, int flag) {
 
-    int edgeNodeIndex, start, end, weight;
-    NODE** p_newADJList = new NODE*[numeOfEdges];
+    int edgeNodeIndex, start, end, trueStart;
+    double weight;
+    NODE** p_newADJList = new NODE*[numOfVertex];
     NODE* p_newNode;
 
-    for(int i = 0; i < numeOfEdges; i++) {
+    for(int i = 0; i < numOfVertex; i++) {
         p_newADJList[i] = NULL;
     }
 
@@ -36,6 +37,8 @@ NODE**  buildAdjanceyList(istream& inputFile, int numeOfEdges, bool DirectedUndi
         inputFile >> start;
         inputFile >> end;
         inputFile >> weight;
+
+        trueStart = start - 1;
 
         p_newNode = new NODE;
 
@@ -46,24 +49,28 @@ NODE**  buildAdjanceyList(istream& inputFile, int numeOfEdges, bool DirectedUndi
 
        if (DirectedUndirected == true && flag == 1) {
 
-            if(p_newADJList[start - 1] == NULL) {
-                p_newADJList[start - 1] = p_newNode;
+            if(p_newADJList[trueStart] == NULL) {
+                p_newADJList[trueStart] = p_newNode;
+            } else if(p_newADJList[trueStart]->next == NULL) {
+                p_newNode->next = p_newADJList[trueStart];
+                p_newADJList[trueStart] = p_newNode;
             } else {
-                p_newNode->next = p_newADJList[start - 1]->next;
-                p_newADJList[start - 1]->next = p_newNode; 
+                p_newNode->next = p_newADJList[trueStart];
+                p_newADJList[trueStart] = p_newNode; 
             } 
-
 
        } else if (DirectedUndirected == true && flag == 2) {
 
-            if(p_newADJList[start - 1] == NULL) {
-                p_newADJList[start - 1] = p_newNode;
+            if(p_newADJList[trueStart] == NULL) {
+                p_newADJList[trueStart] = p_newNode;
+            } else if(p_newADJList[trueStart]->next == NULL) {
+                p_newADJList[trueStart]->next = p_newNode;
             } else {
                 
-                NODE* p_traverse = p_newADJList[start]->next;
+                NODE* p_traverse = p_newADJList[trueStart]->next;
 
                 if(p_traverse == NULL) {
-                    p_newADJList[start - 1]->next = p_traverse;
+                    p_newADJList[trueStart]->next = p_traverse;
                 } else {
                    while(p_traverse->next != NULL) {
                         p_traverse = p_traverse->next;
@@ -75,28 +82,35 @@ NODE**  buildAdjanceyList(istream& inputFile, int numeOfEdges, bool DirectedUndi
 
        } else if(DirectedUndirected == false && flag == 1) {
 
-            if(p_newADJList[start - 1] == NULL) {
-                p_newADJList[start - 1] = p_newNode;
+            if(p_newADJList[trueStart] == NULL) {
+                p_newADJList[trueStart] = p_newNode;
+            }else if(p_newADJList[trueStart]->next == NULL) {
+                p_newNode->next = p_newADJList[trueStart];
+                p_newADJList[trueStart] = p_newNode;
             } else {
-                p_newNode->next = p_newADJList[start - 1]->next;
-                p_newADJList[start - 1]->next = p_newNode; 
+                p_newNode->next = p_newADJList[trueStart];
+                p_newADJList[trueStart] = p_newNode; 
             } 
 
        } else {
 
-           NODE* p_traverse = p_newADJList[start]->next;
+            if(p_newADJList[trueStart] == NULL) {
+                p_newADJList[trueStart] = p_newNode;
+            } else if(p_newADJList[trueStart]->next == NULL) {
+                p_newADJList[trueStart]->next = p_newNode;
+            } else {
+                NODE* p_traverse = p_newADJList[trueStart]->next;
 
                 if(p_traverse == NULL) {
-                    p_newADJList[start - 1]->next = p_traverse;
+                    p_newADJList[trueStart]->next = p_traverse;
                 } else {
                    while(p_traverse->next != NULL) {
                         p_traverse = p_traverse->next;
                     } 
                     p_traverse->next = p_newNode;
                 } 
-
+            }
        }
-
 
     } 
 
@@ -104,9 +118,9 @@ NODE**  buildAdjanceyList(istream& inputFile, int numeOfEdges, bool DirectedUndi
 
 }
 
-void printAdjanceyList(NODE** adjanceyList, int numeOfEdges) {
+void printAdjanceyList(NODE** adjanceyList, int numOfVertex) {
 
-    for(int i = 0; i < numeOfEdges; i++) {
+    for(int i = 0; i < numOfVertex; i++) {
         cout << "ADJ[" << i + 1 << "]" << ":-->";
 
        NODE* p_traverse = adjanceyList[i];

@@ -2,6 +2,7 @@
 
 # Loop through directories from 01 to 20
 for i in {1..20}; do
+    #set -x
     input_file="test_data/$i/Instructions"
     output_file="test_data/$i/Output.txt"
     my_output_file="test_data/$i/myOutput.txt"
@@ -15,4 +16,5 @@ for i in {1..20}; do
     else
         echo "Test $i failed"
     fi
+    #set +x
 done
