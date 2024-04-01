@@ -1,5 +1,5 @@
 EXEC = PJ3
-CC = clang++
+CC = g++
 CFLAGS = -c -Wall
 
 $(EXEC)	:main.o util.o stack.o heap.o graph.o
