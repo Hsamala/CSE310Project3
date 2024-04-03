@@ -1,5 +1,48 @@
 #include "util.h"
 
+int main() {
+
+    VERTEX* p_1 = new VERTEX;
+    p_1->adjanceyIndex = 1;
+    p_1->pi = NULL;
+    p_1->heapPosition = 0;
+    p_1->color = White;
+    p_1->key = 5;
+
+   VERTEX* p_2 = new VERTEX;
+    p_2->adjanceyIndex = 2;
+    p_2->pi = NULL;
+    p_2->heapPosition = 0;
+    p_2->color = White;
+    p_2->key = 2; 
+
+    VERTEX* p_3 = new VERTEX;
+    p_3->adjanceyIndex = 3;
+    p_3->pi = NULL;
+    p_3->heapPosition = 0;
+    p_3->color = White;
+    p_3->key = 4;
+
+    VERTEX* p_4 = new VERTEX;
+    p_4->adjanceyIndex = 4;
+    p_4->pi = NULL;
+    p_4->heapPosition = 0;
+    p_4->color = White;
+    p_4->key = 1;
+
+    VERTEX*  p_5 = new VERTEX;
+    p_5->adjanceyIndex = 5;
+    p_5->pi = NULL;
+    p_5->heapPosition = 0;
+    p_5->color = White;
+    p_5->key = 3;
+
+   
+    
+
+}
+
+/*
 int main(int argc, char **argv) {
 
     cout << fixed;
@@ -68,3 +111,4 @@ int main(int argc, char **argv) {
 
 
 }
+*/

@@ -8,6 +8,11 @@ void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, in
 
 void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source) {
 
-    fprintf(stdout, "This is the compute Single Source command\n");
+    vector<VERTEX*> p_vertexStack;
+    vector<VERTEX*> p_vertexHeap;
+
+    VERTEX* p_startVertex = vertexList[source];
+    p_startVertex->key =0;
+
 
 }
