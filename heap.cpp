@@ -1,6 +1,6 @@
 #include "heap.h"
 
-void minHeapify(vector<VERTEX*>& currentHeap, int currentIndex) {
+void minHeapify(HEAP* passedHeap, int currentIndex) {
 
    int left, right, smallest;
    left = 2 * currentIndex + 1;
@@ -8,76 +8,112 @@ void minHeapify(vector<VERTEX*>& currentHeap, int currentIndex) {
 
    smallest = currentIndex;
 
-   if( (left < currentHeap.size() ) && (right < currentHeap.size()) ) {
+   if( (left < passedHeap->size) && (right < passedHeap->size) ) {
 
-        if( currentHeap[left]->key < currentHeap[smallest]->key ) {
-            smallest = left;
+        if(passedHeap->p_A[left]->key < passedHeap->p_A[smallest]->key) {
+        
+            smallest  = left;
+
         }
 
-        if( currentHeap[right]->key < currentHeap[smallest]->key ) {
-            smallest = right;
-        }
+        if(passedHeap->p_A[right]->key < passedHeap->p_A[smallest]->key) {
+        
+            smallest  = right;
+        
+        }   
 
         if(smallest != currentIndex) {
-            VERTEX* p_temp = currentHeap[currentIndex];
-            currentHeap[currentIndex] = currentHeap[smallest];
-            currentHeap[smallest] = p_temp;
-            minHeapify(currentHeap, smallest);
+
+            ELEMENT* p_temp = passedHeap->p_A[currentIndex];
+            passedHeap->p_A[currentIndex] = passedHeap->p_A[smallest];
+            passedHeap->p_A[smallest] = p_temp;
+            minHeapify(passedHeap, smallest);
+
         }
 
    }
 
 }
 
+void createMinHeap(HEAP* passedHeap) {
 
-VERTEX* ExtractMin(vector<VERTEX*>& currentHeap) {
-    
-    VERTEX* p_temp;
-    
-    if(currentHeap.size() == 1) {
-        return currentHeap[0];
-    } else {
+    int n = passedHeap->size;
 
-        p_temp = currentHeap[0];
-        currentHeap[0] = currentHeap[currentHeap.size() - 1];
-        currentHeap[currentHeap.size() - 1] = p_temp;
+    n--;
 
-        minHeapify(currentHeap, 0);
-
-    }
-
-    return p_temp;
-}
-
-void Insert(vector<VERTEX*>& currentHeap, VERTEX* p_addNode) {
-
-    if(currentHeap.size() < 2) {
-       currentHeap.push_back(p_addNode); 
-       p_addNode->heapPosition = currentHeap.size() - 1;
-    } else {
-        currentHeap.push_back(p_addNode);
-        p_addNode->heapPosition = currentHeap.size() - 1;
-        decreaseIndexValue(currentHeap, p_addNode->heapPosition, p_addNode->key);
+    for(int i = n / 2; i >= 0; i--) {
+        minHeapify(passedHeap, i);
     }
 
 }
 
-void decreaseIndexValue(vector<VERTEX*>& currentHeap, int index, int decreasedValue) {
 
-    currentHeap[index]->key = decreasedValue;
+void insertHeap(HEAP* passedHeap, int currentVertex, double element) {
 
-    int parent = index / 2;
+    ELEMENT* p_newElement = new ELEMENT;
+    p_newElement->key = element;
+    p_newElement->vertexIndex = currentVertex;
 
-    while(currentHeap[index]->key < currentHeap[parent]->key) {
+    int currentIndex = passedHeap->size;
+    passedHeap->p_A[currentIndex] = p_newElement;
+    passedHeap->size += 1;
 
-        VERTEX* p_temp = currentHeap[index];
-        currentHeap[index] = currentHeap[parent];
-        currentHeap[parent] = p_temp;
+    (void)decreaseIndexValue(passedHeap, passedHeap->size, element);
 
-        index = parent;
-        parent = index / 2;
 
+}
+
+ELEMENT* ExtractMinHeap(HEAP* passedHeap) {
+
+    if(passedHeap->size <= 2) {
+        ELEMENT* p_temp = passedHeap->p_A[1];
+        passedHeap->p_A[1] = passedHeap->p_A[0];
+        passedHeap->p_A[0] = p_temp;  
+        passedHeap->size -= 1;
+        return 0;
+    } else {
+    
+        ELEMENT* p_temp = passedHeap->p_A[passedHeap->size - 1];
+        passedHeap->p_A[passedHeap->size - 1] = passedHeap->p_A[0];
+        passedHeap->p_A[0] = p_temp;
+
+        passedHeap->size -= 1;
+
+        minHeapify(passedHeap, 0);
     }
 
+    return passedHeap->p_A[passedHeap->size - 1];
+
+}
+
+int decreaseIndexValue(HEAP* passedHeap, int index, int decreasedValue) {
+
+    int actualIndex = index - 1;
+
+    if(actualIndex > passedHeap->size) {
+        return 0;
+    } else {
+
+        if(passedHeap->p_A[actualIndex]->key < decreasedValue) {
+            return 0;
+        }
+
+        passedHeap->p_A[actualIndex]->key = decreasedValue;
+
+        int parent = (actualIndex - 1) / 2;
+
+        while(passedHeap->p_A[actualIndex]->key < passedHeap->p_A[parent]->key) {
+            ELEMENT* p_temp = passedHeap->p_A[actualIndex];
+            passedHeap->p_A[actualIndex] = passedHeap->p_A[parent];
+            passedHeap->p_A[parent] = p_temp;
+
+            actualIndex = parent;
+            parent = (actualIndex - 1) / 2;
+
+        }
+
+        return 1;
+
+    }
 
 }

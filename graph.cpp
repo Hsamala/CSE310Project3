@@ -1,4 +1,5 @@
 #include "graph.h"
+#include "heap.h"
 
 void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, int destination) {
 
@@ -6,13 +7,17 @@ void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, in
 
 }
 
-void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source) {
+void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source, int numOfVertex) {
 
     vector<VERTEX*> p_vertexStack;
-    vector<VERTEX*> p_vertexHeap;
+    HEAP* p_graphHeap = new HEAP;
+    p_graphHeap->size = 0;
+    p_graphHeap->p_A = new ELEMENT*[numOfVertex];
 
-    VERTEX* p_startVertex = vertexList[source];
-    p_startVertex->key =0;
+    vertexList[source]->key = 0;
 
+    for(int i = 0; i < numOfVertex; i++) {
+        insertHeap(p_graphHeap, i, vertexList[i]->key);
+    }
 
 }
