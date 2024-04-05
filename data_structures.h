@@ -8,7 +8,7 @@
 
 using namespace std;
 
-enum COLOR {White, Gray, Black};
+enum COLOR {White, Black};
 typedef struct TAG_VERTEX{
     int adjanceyIndex; 
     int pi;

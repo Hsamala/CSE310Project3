@@ -9,7 +9,7 @@ VERTEX** buildVertexList(int numOfVertex)  {
         p_newVertex = new VERTEX;
         p_newVertex->adjanceyIndex = i + 1;
         p_newVertex->color = White;
-        p_newVertex->heapPosition = 0;
+        p_newVertex->heapPosition = -5;
         p_newVertex->key = 9999999;
         p_newVertex->pi = 0;
 

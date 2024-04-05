@@ -4,7 +4,7 @@
 
 void minHeapify(HEAP* passedHeap, int currentIndex);
 void createMinHeap(HEAP* passedHeap);
-void insertHeap(HEAP* passedHeap, int currentVertex, double element);
+void insertHeap(HEAP* passedHeap, VERTEX* p_currentVertex);
 ELEMENT* ExtractMinHeap(HEAP* passedHeap); 
 int decreaseIndexValue(HEAP* passedHeap, int index, int decreasedValue);
 #endif

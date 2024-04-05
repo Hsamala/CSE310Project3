@@ -17,7 +17,7 @@ void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source, 
     vertexList[source]->key = 0;
 
     for(int i = 0; i < numOfVertex; i++) {
-        insertHeap(p_graphHeap, i, vertexList[i]->key);
+        insertHeap(p_graphHeap, vertexList[i]);
     }
 
 }

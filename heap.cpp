@@ -48,29 +48,29 @@ void createMinHeap(HEAP* passedHeap) {
 }
 
 
-void insertHeap(HEAP* passedHeap, int currentVertex, double element) {
+void insertHeap(HEAP* passedHeap, VERTEX* p_currentVertex) {
 
     ELEMENT* p_newElement = new ELEMENT;
-    p_newElement->key = element;
-    p_newElement->vertexIndex = currentVertex;
+    p_newElement->key = p_currentVertex->key;
+    p_newElement->vertexIndex = p_currentVertex->adjanceyIndex;
 
     int currentIndex = passedHeap->size;
     passedHeap->p_A[currentIndex] = p_newElement;
     passedHeap->size += 1;
 
-    (void)decreaseIndexValue(passedHeap, passedHeap->size, element);
-
+    (void)decreaseIndexValue(passedHeap, passedHeap->size, p_newElement->key); 
 
 }
 
 ELEMENT* ExtractMinHeap(HEAP* passedHeap) {
 
-    if(passedHeap->size <= 2) {
+    if(passedHeap->size == 1) {
+        return passedHeap->p_A[0];
+    }else if(passedHeap->size <= 2) {
         ELEMENT* p_temp = passedHeap->p_A[1];
         passedHeap->p_A[1] = passedHeap->p_A[0];
         passedHeap->p_A[0] = p_temp;  
         passedHeap->size -= 1;
-        return 0;
     } else {
     
         ELEMENT* p_temp = passedHeap->p_A[passedHeap->size - 1];
@@ -112,7 +112,7 @@ int decreaseIndexValue(HEAP* passedHeap, int index, int decreasedValue) {
 
         }
 
-        return 1;
+        return actualIndex;
 
     }
 
