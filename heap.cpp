@@ -71,8 +71,8 @@ ELEMENT* ExtractMinHeap(HEAP* passedHeap) {
     ELEMENT* p_temp;
 
     if(passedHeap->size == 1) {
-        return passedHeap->p_A[0];
         passedHeap->size -= 1;
+        return passedHeap->p_A[0];
     }else if(passedHeap->size <= 2) {
         p_temp = passedHeap->p_A[1];
         passedHeap->p_A[1] = passedHeap->p_A[0];
