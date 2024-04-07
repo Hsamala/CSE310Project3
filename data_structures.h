@@ -33,8 +33,7 @@ typedef struct TAG_NODE{
 
 
 typedef struct TAG_ELEMENT {
-    double key;
-    int vertexIndex;
+    VERTEX* p_ElementVertex;
     // other fields as you see fit
 }ELEMENT;
 
