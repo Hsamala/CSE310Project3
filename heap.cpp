@@ -38,18 +38,6 @@ void minHeapify(HEAP* passedHeap, int currentIndex) {
 
 }
 
-void createMinHeap(HEAP* passedHeap) {
-
-    int n = passedHeap->size;
-
-    n--;
-
-    for(int i = n / 2; i >= 0; i--) {
-        //minHeapify(passedHeap, i);
-    }
-
-}
-
 
 void insertHeap(HEAP* passedHeap, VERTEX* p_currentVertex) {
 

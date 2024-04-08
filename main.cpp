@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
                 printAdjanceyList(p_adjacencyList, numOfVertex);
                 break;
             case 2:
-                computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2);
+                computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2, numOfVertex);
                 break;
             case 3:
                 computeSingleSource(p_vertexList, p_adjacencyList, parameter1, numOfVertex); 
