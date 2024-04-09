@@ -11,9 +11,10 @@ int main(int argc, char **argv) {
     char instructions[100];
     VERTEX** p_vertexList;
     NODE** p_adjacencyList;
+    string shortestPath;
 
     if(argc < 4) {
-        fprintf(stderr, "Usage %s <InputFile> <GraphType> flag\n", argv[0]);
+        cerr << "Usage: " << argv[0] << "<InputFile> <GraphType> <Flag>" << endl;
         exit(0);
     }
 
@@ -33,6 +34,8 @@ int main(int argc, char **argv) {
 
     p_vertexList = buildVertexList(numOfVertex);
     p_adjacencyList = buildAdjanceyList(myCurrentFile, numOfVertex, sizeOfAdjList, directGraph, flag);
+
+    myCurrentFile.close();
 
     while(1) {
 
@@ -56,7 +59,7 @@ int main(int argc, char **argv) {
                 printLength();
                 break;
             case 5:
-                printPath();
+                shortestPath = printPath(p_vertexList, parameter1, parameter2, ".");
                 break;
             case 6:
                 exit(0);

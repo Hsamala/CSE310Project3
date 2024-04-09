@@ -3,6 +3,6 @@
 #include "data_structures.h"
 
 void printLength();
-void printPath();
+string printPath(VERTEX** p_vertexList, int source, int target, string currentPrintArray);
 
 #endif

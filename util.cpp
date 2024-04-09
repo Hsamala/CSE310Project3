@@ -11,7 +11,7 @@ VERTEX** buildVertexList(int numOfVertex)  {
         p_newVertex->color = White;
         p_newVertex->heapPosition = -5;
         p_newVertex->key = 9999999;
-        p_newVertex->pi = 0;
+        p_newVertex->pi = -5;
 
         p_newVertexList[i] = p_newVertex;
     }
