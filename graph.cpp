@@ -81,9 +81,9 @@ void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source, 
                 decreaseIndexValue(p_graphHeap, p_graphHeap->p_A[p_vVertex->heapPosition], p_vVertex->key);
             }
 
-        }
+            p_vertexList = p_vertexList->next;
 
-        p_vertexList = p_vertexList->next;
+        }
 
     }
 

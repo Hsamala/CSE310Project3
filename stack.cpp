@@ -5,7 +5,7 @@ void printLength() {
     fscanf(stdout, "This is the print Length command\n");
 
 }
-
+/*
 string printPath(VERTEX** p_vertexList, int source, int target, string currentPrintArray) {
 
     VERTEX* p_currentVertex = p_vertexList[target - 1];
@@ -31,5 +31,31 @@ string printPath(VERTEX** p_vertexList, int source, int target, string currentPr
         printArray = printPath(p_vertexList, source, p_currentVertex->pi, printArray);
 
     }
+
+}
+*/
+
+string printPath(VERTEX** p_vertexList, int source, int target, string currentPrintArray) {
+
+    VERTEX* p_currentVertex = p_vertexList[target - 1]; 
+
+    string printArray = currentPrintArray;
+
+    while(p_currentVertex->pi != -5) {
+
+       printArray = string("-->") + string("[") + to_string(p_currentVertex->adjanceyIndex) + string("    ") + to_string(p_currentVertex->key).substr(0, 4) + "]" + printArray;
+       p_currentVertex = p_vertexList[p_currentVertex->pi - 1]; 
+
+    }
+
+    if(p_currentVertex->adjanceyIndex != source) {
+       cout << "There is no path from " << source << " to " << target << endl; 
+       return ""; 
+    } else {
+        printArray = string("[") + to_string(p_currentVertex->adjanceyIndex) + string("    ") + to_string(p_currentVertex->key).substr(0, 4) + string("]") + printArray;
+        cout << "This shortest path from " << source << " to " << target << " is: " << endl;
+        return printArray;
+    }
+
 
 }

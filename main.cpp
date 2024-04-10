@@ -45,21 +45,28 @@ int main(int argc, char **argv) {
 
             case 0:
                 cerr << "Invalid Instruction" << endl;
+                commandType = -1;
                 break;
             case 1:
                 printAdjanceyList(p_adjacencyList, numOfVertex);
+                commandType = -1;
                 break;
             case 2:
                 computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2, numOfVertex);
+                commandType = -1;
                 break;
             case 3:
                 computeSingleSource(p_vertexList, p_adjacencyList, parameter1, numOfVertex); 
+                commandType = -1;
                 break;
             case 4:
                 printLength();
+                commandType = -1;
                 break;
             case 5:
                 shortestPath = printPath(p_vertexList, parameter1, parameter2, ".");
+                cout << shortestPath << endl;
+                commandType = -1; 
                 break;
             case 6:
                 exit(0);
