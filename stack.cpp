@@ -1,41 +1,25 @@
 #include "stack.h"
 
-void printLength() {
-
-    fscanf(stdout, "This is the print Length command\n");
-
-}
-/*
-string printPath(VERTEX** p_vertexList, int source, int target, string currentPrintArray) {
+void printLength(VERTEX** p_vertexList, int source, int target) {
 
     VERTEX* p_currentVertex = p_vertexList[target - 1];
+    double sumOfWeights = 0.00;
+    sumOfWeights += p_currentVertex->key;
+     
 
-    string printArray = currentPrintArray;
+    while(p_currentVertex->pi != -5) {
+       p_currentVertex = p_vertexList[p_currentVertex->pi - 1]; 
+    } 
 
-    if(p_currentVertex->pi == -5) {
-
-        if(p_currentVertex->adjanceyIndex == source) {
-
-            printArray = string("[") + to_string(p_currentVertex->adjanceyIndex) + string("    ") + to_string(p_currentVertex->key) + string("]") + printArray;
-            cout << "This shortest path from " << source << " to " << target << "is:" << endl;
-            return printArray;
-
-        } else {
-            cout << "There is no path from" << source << " to " << target << endl; 
-            return "";       
-        }
-
+   if (p_currentVertex->adjanceyIndex != source) {
+       cout << "There is no path from " << source << " to " << target << "." << endl; 
     } else {
-
-        printArray = string("-->") + string("[") + to_string(p_currentVertex->adjanceyIndex) + string("    ") + to_string(p_currentVertex->key) + "]" + printArray;
-        printArray = printPath(p_vertexList, source, p_currentVertex->pi, printArray);
-
-    }
+        cout << "The length of the shortest path from " << source << " to " << target << " is:     " << sumOfWeights << endl;
+    } 
 
 }
-*/
 
-string printPath(VERTEX** p_vertexList, int source, int target, string currentPrintArray) {
+void printPath(VERTEX** p_vertexList, int source, int target, string currentPrintArray) {
 
     VERTEX* p_currentVertex = p_vertexList[target - 1]; 
 
@@ -43,18 +27,17 @@ string printPath(VERTEX** p_vertexList, int source, int target, string currentPr
 
     while(p_currentVertex->pi != -5) {
 
-       printArray = string("-->") + string("[") + to_string(p_currentVertex->adjanceyIndex) + string("    ") + to_string(p_currentVertex->key).substr(0, 4) + "]" + printArray;
+       printArray = string("-->") + string("[") + to_string(p_currentVertex->adjanceyIndex) + string(":    ") + to_string(p_currentVertex->key).substr(0, 4) + "]" + printArray;
        p_currentVertex = p_vertexList[p_currentVertex->pi - 1]; 
 
     }
 
     if(p_currentVertex->adjanceyIndex != source) {
-       cout << "There is no path from " << source << " to " << target << endl; 
-       return ""; 
+       cout << "There is no path from " << source << " to " << target << "." << endl; 
     } else {
-        printArray = string("[") + to_string(p_currentVertex->adjanceyIndex) + string("    ") + to_string(p_currentVertex->key).substr(0, 4) + string("]") + printArray;
-        cout << "This shortest path from " << source << " to " << target << " is: " << endl;
-        return printArray;
+        printArray = string("[") + to_string(p_currentVertex->adjanceyIndex) + string(":    ") + to_string(p_currentVertex->key).substr(0, 4) + string("]") + printArray;
+        cout << "The shortest path from " << source << " to " << target << " is:" << endl;
+        cout << printArray << endl;
     }
 
 

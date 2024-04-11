@@ -52,21 +52,39 @@ int main(int argc, char **argv) {
                 commandType = -1;
                 break;
             case 2:
+                //Must reset to 99999 before running 2nd algorithm
+                for(int i = 0; i < numOfVertex; i++) {
+                    p_vertexList[i]->key = 9999999;
+                    p_vertexList[i]->pi = -5;
+                }
                 computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2, numOfVertex);
                 commandType = -1;
                 break;
             case 3:
+                for(int i = 0; i < numOfVertex; i++) {
+                    p_vertexList[i]->key = 9999999;
+                    p_vertexList[i]->pi = -5;
+                }
                 computeSingleSource(p_vertexList, p_adjacencyList, parameter1, numOfVertex); 
                 commandType = -1;
                 break;
             case 4:
-                printLength();
+                printLength(p_vertexList, parameter1, parameter2);
                 commandType = -1;
                 break;
             case 5:
-                shortestPath = printPath(p_vertexList, parameter1, parameter2, ".");
-                cout << shortestPath << endl;
-                commandType = -1; 
+            /*
+                for(int i = 0; i < numOfVertex; i++) {
+                    cout << "Adjancey Index: " << p_vertexList[i]->adjanceyIndex << endl;
+                    cout << "Parent: " << p_vertexList[i]->pi << endl;
+                    cout << "Heap Position: " << p_vertexList[i]->heapPosition << endl;
+                    cout << "key: " << p_vertexList[i]->key << endl;
+                }
+                */
+
+               //Save previous parameter1 and then check every time you run printPath to see if it's correct.
+
+                printPath(p_vertexList, parameter1, parameter2, ".");
                 break;
             case 6:
                 exit(0);
