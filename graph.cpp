@@ -1,7 +1,7 @@
 #include "graph.h"
 #include "heap.h"
 
-void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, int destination, int numOfVertex) {
+int computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, int destination, int numOfVertex) {
 
     VERTEX* p_uVertex; 
     VERTEX* p_vVertex;
@@ -45,9 +45,11 @@ void computeSinglePair(VERTEX** vertexList, NODE** adjacencyList, int source, in
 
     }
 
+    return source;
+
 }
 
-void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source, int numOfVertex) {
+int computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source, int numOfVertex) {
 
     VERTEX* p_uVertex; 
     VERTEX* p_vVertex;
@@ -87,9 +89,11 @@ void computeSingleSource(VERTEX** vertexList, NODE** adjacencyList, int source, 
 
     }
 
+    return source;
+
 }
 
-int relax(VERTEX* p_uVertex, VERTEX* p_vVertex, int edgeWeight) {
+int relax(VERTEX* p_uVertex, VERTEX* p_vVertex, float edgeWeight) {
 
     if( p_vVertex->key > (p_uVertex->key + edgeWeight) ) {
         p_vVertex->key = p_uVertex->key + edgeWeight;

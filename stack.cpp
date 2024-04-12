@@ -24,10 +24,12 @@ void printPath(VERTEX** p_vertexList, int source, int target, string currentPrin
     VERTEX* p_currentVertex = p_vertexList[target - 1]; 
 
     string printArray = currentPrintArray;
+    double roundedFloat;
 
     while(p_currentVertex->pi != -5) {
-
-       printArray = string("-->") + string("[") + to_string(p_currentVertex->adjanceyIndex) + string(":    ") + to_string(p_currentVertex->key).substr(0, 4) + "]" + printArray;
+       roundedFloat = round(p_currentVertex->key * 100);
+       roundedFloat = roundedFloat / 100; 
+       printArray = string("-->") + string("[") + to_string(p_currentVertex->adjanceyIndex) + string(":    ") + to_string(roundedFloat).substr(0, (to_string(roundedFloat).find(".") + 3)) + "]" + printArray;
        p_currentVertex = p_vertexList[p_currentVertex->pi - 1]; 
 
     }
@@ -35,7 +37,8 @@ void printPath(VERTEX** p_vertexList, int source, int target, string currentPrin
     if(p_currentVertex->adjanceyIndex != source) {
        cout << "There is no path from " << source << " to " << target << "." << endl; 
     } else {
-        printArray = string("[") + to_string(p_currentVertex->adjanceyIndex) + string(":    ") + to_string(p_currentVertex->key).substr(0, 4) + string("]") + printArray;
+        roundedFloat = round(p_currentVertex->key * 100); 
+        printArray = string("[") + to_string(p_currentVertex->adjanceyIndex) + string(":    ") + to_string(roundedFloat).substr(0, (to_string(roundedFloat).find(".") + 3) ) + "]" + printArray;
         cout << "The shortest path from " << source << " to " << target << " is:" << endl;
         cout << printArray << endl;
     }

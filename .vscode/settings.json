@@ -4,7 +4,9 @@
         "vector": "cpp",
         "iostream": "cpp",
         "string": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "__bit_reference": "cpp",
+        "fstream": "cpp"
     },
 
 }

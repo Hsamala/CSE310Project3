@@ -10,7 +10,7 @@ VERTEX** buildVertexList(int numOfVertex)  {
         p_newVertex->adjanceyIndex = i + 1;
         p_newVertex->color = White;
         p_newVertex->heapPosition = -5;
-        p_newVertex->key = 9999999;
+        p_newVertex->key = 9999999.99f;
         p_newVertex->pi = -5;
 
         p_newVertexList[i] = p_newVertex;
@@ -46,6 +46,8 @@ NODE** buildAdjanceyList(istream& inputFile, int numOfVertex, int numeOfEdges, b
         p_newNode->startVertex = start;
         p_newNode->endVertex = end;
         p_newNode->weight = weight;
+
+
 
        if (flag == 1) {
 

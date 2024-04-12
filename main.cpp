@@ -6,14 +6,14 @@ int main(int argc, char **argv) {
     cout << setprecision(2);
 
     ifstream myCurrentFile;
-    int commandType = 0, parameter1 = 0, parameter2 = 0, numOfVertex = 0, sizeOfAdjList = 0, flag = 0;
+    int commandType = 0, parameter1 = 0, parameter2 = 0, numOfVertex = 0, sizeOfAdjList = 0, flag = 0, singleStart = -5;
     bool directGraph = false;
     char instructions[100];
     VERTEX** p_vertexList;
     NODE** p_adjacencyList;
     string shortestPath;
 
-    if(argc < 4) {
+    if(argc < 4 || *argv[3] > 50) {
         cerr << "Usage: " << argv[0] << "<InputFile> <GraphType> <Flag>" << endl;
         exit(0);
     }
@@ -47,28 +47,31 @@ int main(int argc, char **argv) {
                 cerr << "Invalid Instruction" << endl;
                 commandType = -1;
                 break;
-            case 1:
+            case 1: 
                 printAdjanceyList(p_adjacencyList, numOfVertex);
                 commandType = -1;
                 break;
             case 2:
                 //Must reset to 99999 before running 2nd algorithm
                 for(int i = 0; i < numOfVertex; i++) {
-                    p_vertexList[i]->key = 9999999;
+                    p_vertexList[i]->key = 9999999.99;
                     p_vertexList[i]->pi = -5;
                 }
-                computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2, numOfVertex);
+                singleStart  = computeSinglePair(p_vertexList, p_adjacencyList, parameter1, parameter2, numOfVertex);
                 commandType = -1;
                 break;
             case 3:
                 for(int i = 0; i < numOfVertex; i++) {
-                    p_vertexList[i]->key = 9999999;
+                    p_vertexList[i]->key = 9999999.99;
                     p_vertexList[i]->pi = -5;
                 }
-                computeSingleSource(p_vertexList, p_adjacencyList, parameter1, numOfVertex); 
+                singleStart = computeSingleSource(p_vertexList, p_adjacencyList, parameter1, numOfVertex); 
                 commandType = -1;
                 break;
             case 4:
+                if(singleStart != parameter1) {
+                    break;
+                }
                 printLength(p_vertexList, parameter1, parameter2);
                 commandType = -1;
                 break;
@@ -83,7 +86,9 @@ int main(int argc, char **argv) {
                 */
 
                //Save previous parameter1 and then check every time you run printPath to see if it's correct.
-
+                if(singleStart != parameter1) {
+                    break;
+                }
                 printPath(p_vertexList, parameter1, parameter2, ".");
                 break;
             case 6:
